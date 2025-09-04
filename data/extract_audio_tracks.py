@@ -8,8 +8,8 @@ def extractAudioFromVideo(video, targetAudio):
     subprocess.call(command, shell=True, stdout=None)
 
 if __name__ == '__main__':
-    ava_video_dir = '.../AVA/videos/trainval'
-    target_audios = '.../audio_tracks/trainval'
+    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/val'
+    target_audios = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/audio_tracks'
 
     all_videos = os.listdir(ava_video_dir)
     all_videos = [v.split('.')[0] for v in all_videos]

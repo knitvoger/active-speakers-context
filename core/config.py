@@ -4,14 +4,17 @@ import torch.nn as nn
 import torch.optim as optim
 import core.models as mdet
 
+sys.path.append("/home/azureuser/gitm/active-speakers-context/tsm_model")
+import models_stage1_tsm
+
 STE_inputs = {
     # input files
     'csv_train_full': '.../ava_activespeaker_train_augmented.csv',
-    'csv_val_full': '.../ava_activespeaker_val_augmented.csv',
+    'csv_val_full': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/csv/HV0H6oc4Kvs_val_augmented.csv',
 
     # Data config
-    'audio_dir': '..../instance_wavs_time/',
-    'video_dir': '..../instance_crops_time/',
+    'audio_dir': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/sliced_audio_tracks',
+    'video_dir': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/instance_crops_time',
     'models_out': '...'
 }
 
@@ -33,7 +36,7 @@ ASC_inputs_forward = {
 #Optimization params
 STE_optimization_params = {
     # Net Arch
-    'backbone': mdet.resnet18_two_streams,
+    'backbone': models_stage1_tsm.resnet18_two_streams_forward,
 
     # Optimization config
     'optimizer': optim.Adam,
@@ -50,7 +53,7 @@ STE_optimization_params = {
 
 STE_forward_params = {
     # Net Arch
-    'backbone': mdet.resnet18_two_streams_forward,
+    'backbone': models_stage1_tsm.resnet18_two_streams_forward,
 
     # Batch Config
     'batch_size': 1,

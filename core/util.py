@@ -33,8 +33,8 @@ def load_train_video_set():
     videos.sort()
     return videos
 
-def load_val_video_set():
-    files = os.listdir('.../AVA/csv/val')
+def load_val_video_set(dir):
+    files = os.listdir(dir)
     videos = [f[:-18] for f in files]
     videos.sort()
     return videos

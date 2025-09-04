@@ -21,8 +21,8 @@ if __name__ == '__main__':
     cuda_device_number = str(sys.argv[2])
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
-    model_weights = '.../ste_encoder_big/99.pth'
-    target_directory = '.../train_forward/'
+    model_weights = '/home/azureuser/gitm/active-speakers-context/tsm_model/resnet18-tsm-aug.pth'
+    target_directory = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/forward'
     io_config = exp_conf.STE_inputs
     opt_config = exp_conf.STE_forward_params
     opt_config['batch_size'] = 1
@@ -37,18 +37,18 @@ if __name__ == '__main__':
         'val': ct.video_val
     }
 
-    video_val_path = os.path.join(io_config['video_dir'], 'train')
-    audio_val_path = os.path.join(io_config['audio_dir'], 'train')
+    video_val_path = os.path.join(io_config['video_dir'], 'val')
+    audio_val_path = os.path.join(io_config['audio_dir'], 'val')
 
     #train_videos = load_train_video_set()
-    val_videos =  load_val_video_set()
+    val_videos =  load_val_video_set("/home/azureuser/gitm/active-speakers-context/avadata_HV0/csv")
 
     for video_key in val_videos:
         print('forward video ', video_key)
         with open(target_directory+video_key+'.csv', mode='w') as vf:
             vf_writer = csv.writer(vf, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             d_val = AudioVideoDatasetAuxLossesForwardPhase(video_key, audio_val_path, video_val_path,
-                                            io_config['csv_train_full'], clip_lenght,
+                                            io_config['csv_val_full'], clip_lenght,
                                             image_size, video_data_transforms['val'],
                                             do_video_augment=False)
 
@@ -58,6 +58,7 @@ if __name__ == '__main__':
             for idx, dl in enumerate(dl_val):
                 print(' \t Forward iter ', idx, '/', len(dl_val), end='\r')
                 audio_data, video_data, video_id, ts, entity_id, gt = dl
+                video_data = video_data.view(1*clip_lenght, 3, 144, 144)
                 video_data = video_data.to(device)
                 audio_data = audio_data.to(device)
 
