@@ -23,7 +23,8 @@ def _pil_loader(path, target_size):
             img = img.resize(target_size)
             return img.convert('RGB')
     except OSError as e:
-        raise RuntimeError(f"{path} not found.")
+        print(f"{path} not found.")
+        return Image.new('RGB', target_size)
 
 
 def set_up_log_and_ws_out(models_out, opt_config, experiment_name, headers=None):

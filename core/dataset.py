@@ -84,9 +84,10 @@ class CachedAVSource(data.Dataset):
             entity_id = csv_row[-3]
             timestamp = csv_row[1]
             entity_label = self._postprocess_entity_label(csv_row[-2])
+            bbox = csv_row[2:6]
 
-            entity_list.append((video_id, entity_id, timestamp))
-            minimal_entity_data = (entity_id, timestamp, entity_label) # sfate to ingore label here
+            entity_list.append((video_id, entity_id, timestamp, bbox))
+            minimal_entity_data = (entity_id, timestamp, entity_label, bbox) # sfate to ingore label here
 
             if video_id not in self.entity_data.keys():
                 self.entity_data[video_id] = {}
@@ -204,7 +205,7 @@ class AudioVideoDatasetAuxLossesForwardPhase(CachedAVSource):
 
     def __getitem__(self, index):
         #Get meta-data
-        video_id, entity_id, ts = self.entity_list[index]
+        video_id, entity_id, ts, bbox = self.entity_list[index]
         entity_metadata = self.entity_data[video_id][entity_id]
 
         audio_offset = float(entity_metadata[0][1])
@@ -233,7 +234,7 @@ class AudioVideoDatasetAuxLossesForwardPhase(CachedAVSource):
             video_data = [self.video_transform(vd) for vd in video_data]
 
         video_data = torch.cat(video_data, dim=0)
-        return np.float32(audio_data), video_data, video_id, ts, entity_id, gt
+        return np.float32(audio_data), video_data, video_id, ts, entity_id, bbox, gt
 
 #ASC Datasets
 class ContextualDataset(data.Dataset):

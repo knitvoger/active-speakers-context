@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
             for idx, dl in enumerate(dl_val):
                 print(' \t Forward iter ', idx, '/', len(dl_val), end='\r')
-                audio_data, video_data, video_id, ts, entity_id, gt = dl
+                audio_data, video_data, video_id, ts, entity_id, bbox, gt = dl
                 video_data = video_data.view(1*clip_lenght, 3, 144, 144)
                 video_data = video_data.to(device)
                 audio_data = audio_data.to(device)
