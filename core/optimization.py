@@ -60,6 +60,7 @@ def _train_model_av_losses(model, dataloader, optimizer, criterion,
 
         optimizer.zero_grad()
         with torch.set_grad_enabled(True):
+            # video_data = video_data.view(video_data.shape[0], -1, 3, video_data.shape[2], video_data.shape[3])
             av_out, a_out, v_out, _ = model(audio_data, video_data)
             _, preds = torch.max(av_out, 1)
 

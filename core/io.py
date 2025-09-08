@@ -23,7 +23,7 @@ def _pil_loader(path, target_size):
             img = img.resize(target_size)
             return img.convert('RGB')
     except OSError as e:
-        print(f"{path} not found.")
+        # print(f"{path} not found.")
         return Image.new('RGB', target_size)
 
 

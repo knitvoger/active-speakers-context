@@ -165,7 +165,8 @@ class AudioVideoDatasetAuxLosses(CachedAVSource):
         if self.video_transform is not None:
             video_data = [self.video_transform(vd) for vd in video_data]
 
-        video_data = torch.cat(video_data, dim=0)
+        # video_data = torch.cat(video_data, dim=0)
+        video_data = torch.stack(video_data, dim=0)  # keep T dimension
         return (np.float32(audio_data), video_data), target, target_audio
 
 
