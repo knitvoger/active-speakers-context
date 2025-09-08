@@ -4,12 +4,13 @@ import os
 
 
 def extractAudioFromVideo(video, targetAudio):
-    command = ("ffmpeg -y -i %s -async 1 -ac 1 -vn -acodec pcm_s16le -ar 16000 %s" % (video, targetAudio))
-    subprocess.call(command, shell=True, stdout=None)
+    if not os.path.exists(targetAudio):
+        command = ("ffmpeg -y -i %s -async 1 -ac 1 -vn -acodec pcm_s16le -ar 16000 %s" % (video, targetAudio))
+        subprocess.call(command, shell=True, stdout=None)
 
 if __name__ == '__main__':
-    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/val'
-    target_audios = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/audio_tracks'
+    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata/trainval'
+    target_audios = '/home/azureuser/gitm/active-speakers-context/avadata/audio_tracks'
 
     all_videos = os.listdir(ava_video_dir)
     all_videos = [v.split('.')[0] for v in all_videos]

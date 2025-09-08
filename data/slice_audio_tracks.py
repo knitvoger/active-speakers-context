@@ -63,9 +63,9 @@ def extract_audio_tracks_time(audio_dir, output_dir, balanced_gb, entity_list):
 
 
 if __name__ == '__main__':
-    ava_audio_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/audio_tracks'
-    output_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/sliced_audio_tracks'
-    csv = '/home/azureuser/gitm/active-speakers-context/HV0H6oc4Kvs.augmented.csv'
+    ava_audio_dir = '/home/azureuser/gitm/active-speakers-context/avadata/audio_tracks'
+    output_dir = '/home/azureuser/gitm/active-speakers-context/avadata/sliced_audio_tracks'
+    csv = '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_trainval_augmented.csv'
 
     df = pd.read_csv(csv)
     train_subset_dir = os.path.join(output_dir, 'train')

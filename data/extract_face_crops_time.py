@@ -72,9 +72,9 @@ def generate_mini_dataset(video_dir, output_dir, df, balanced=False):
 
 
 if __name__ == '__main__':
-    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/val'
-    output_dir = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/instance_crops_time2'
-    csv_file = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/csv2/HV0H6oc4Kvs_val_augmented.csv'
+    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata/trainval'
+    output_dir = '/home/azureuser/gitm/active-speakers-context/avadata/instance_crops_time'
+    csv_file = '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_trainval_augmented.csv'
 
     df = pd.read_csv(csv_file, engine='python')
     train_subset_dir = os.path.join(output_dir, 'val')

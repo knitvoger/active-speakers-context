@@ -9,13 +9,13 @@ import models_stage1_tsm
 
 STE_inputs = {
     # input files
-    'csv_train_full': '.../ava_activespeaker_train_augmented.csv',
-    'csv_val_full': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/csv/HV0H6oc4Kvs_val_augmented.csv',
+    'csv_train_full': '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_train_augmented.csv',
+    'csv_val_full': '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_val_augmented.csv',
 
     # Data config
-    'audio_dir': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/sliced_audio_tracks',
-    'video_dir': '/home/azureuser/gitm/active-speakers-context/avadata_HV0/instance_crops_time',
-    'models_out': '...'
+    'audio_dir': '/home/azureuser/gitm/active-speakers-context/avadata/sliced_audio_tracks',
+    'video_dir': '/home/azureuser/gitm/active-speakers-context/avadata/instance_crops_time',
+    'models_out': '/home/azureuser/gitm/active-speakers-context/model_output'
 }
 
 ASC_inputs = {
@@ -36,7 +36,7 @@ ASC_inputs_forward = {
 #Optimization params
 STE_optimization_params = {
     # Net Arch
-    'backbone': models_stage1_tsm.resnet18_two_streams_forward,
+    'backbone': models_stage1_tsm.resnet18_two_streams,
 
     # Optimization config
     'optimizer': optim.Adam,
