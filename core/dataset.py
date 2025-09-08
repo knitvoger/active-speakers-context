@@ -212,7 +212,7 @@ class AudioVideoDatasetAuxLossesForwardPhase(CachedAVSource):
         audio_offset = float(entity_metadata[0][1])
         mid_index = self._where_is_ts(entity_metadata, ts)
         midone = entity_metadata[mid_index]
-        gt = midone[-1]
+        gt = midone[-2]
 
         clip_meta_data = cu.generate_clip_meta(entity_metadata, mid_index,
                                                self.half_clip_length)
@@ -234,7 +234,8 @@ class AudioVideoDatasetAuxLossesForwardPhase(CachedAVSource):
         if self.video_transform is not None:
             video_data = [self.video_transform(vd) for vd in video_data]
 
-        video_data = torch.cat(video_data, dim=0)
+        # video_data = torch.cat(video_data, dim=0)
+        video_data = torch.stack(video_data, dim=0)  # keep T dimension
         return np.float32(audio_data), video_data, video_id, ts, entity_id, bbox, gt
 
 #ASC Datasets

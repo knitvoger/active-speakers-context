@@ -21,7 +21,7 @@ if __name__ == '__main__':
     cuda_device_number = str(sys.argv[2])
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
-    model_weights = '/home/azureuser/gitm/active-speakers-context/tsm_model/resnet18-tsm-aug.pth'
+    model_weights = '/home/azureuser/gitm/active-speakers-context/model_output/ste_encoder/48.pth'
     target_directory = '/home/azureuser/gitm/active-speakers-context/avadata_HV0/forward'
     io_config = exp_conf.STE_inputs
     opt_config = exp_conf.STE_forward_params
@@ -58,7 +58,7 @@ if __name__ == '__main__':
             for idx, dl in enumerate(dl_val):
                 print(' \t Forward iter ', idx, '/', len(dl_val), end='\r')
                 audio_data, video_data, video_id, ts, entity_id, bbox, gt = dl
-                video_data = video_data.view(1*clip_lenght, 3, 144, 144)
+                # video_data = video_data.view(1*clip_lenght, 3, 144, 144)
                 video_data = video_data.to(device)
                 audio_data = audio_data.to(device)
 

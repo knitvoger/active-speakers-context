@@ -99,7 +99,7 @@ def load_av_clip_from_metadata(clip_meta_data, frames_source, audio_source,
     try:
         sample_rate, audio_data = wavfile.read(audio_file)
     except:
-        raise RuntimeError(f"{audio_file} not exists.")
+        sample_rate, audio_data = 16000,  np.zeros((16000*10))
 
     audio_start = int((min_ts-audio_offset)*sample_rate)
     audio_end = int((max_ts-audio_offset)*sample_rate)
