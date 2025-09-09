@@ -46,6 +46,11 @@ if __name__ == '__main__':
 
     for video_key in val_videos:
         print(f'forward video {video_key}')
+        target_pkl = os.path.join(target_directory, video_key + ".pkl")
+        if os.path.exists(target_pkl):
+            print(f"skip {video_key}")
+            continue
+
         # load original pkl from spell project
         with open(f"/home/azureuser/git/GraVi-T/data/features/RESNET18-TSM-AUG/train/{video_key}.pkl", "rb") as f:
             tracks = pickle.load(f)
@@ -95,6 +100,5 @@ if __name__ == '__main__':
                 else:
                     raise RuntimeError("Unexpected timestamp!")
         
-        target_pkl = os.path.join(target_directory, video_key + ".pkl")
         with open(target_pkl, 'wb') as f:
             pickle.dump(tracks, f)
