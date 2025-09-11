@@ -178,7 +178,7 @@ class AudioVideoDatasetAuxLossesForwardPhase(CachedAVSource):
         # Data directories
         self.audio_root = audio_root
         self.video_root = video_root
-        if not os.path.exists(video_root) or not os.path.exists(video_root):
+        if not os.path.exists(audio_root) or not os.path.exists(video_root):
             raise RuntimeError(f"{audio_root} or {video_root} not exists.")
 
         # Post-processing

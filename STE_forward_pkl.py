@@ -50,7 +50,7 @@ if __name__ == '__main__':
         if os.path.exists(target_pkl):
             print(f"skip {video_key}")
             continue
-        
+
         # load original pkl from spell project
         with open(f"RESNET18-TSM-AUG/val/{video_key}.pkl", "rb") as f:
             tracks = pickle.load(f)
