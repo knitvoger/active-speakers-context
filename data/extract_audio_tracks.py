@@ -9,9 +9,11 @@ def extractAudioFromVideo(video, targetAudio):
         subprocess.call(command, shell=True, stdout=None)
 
 if __name__ == '__main__':
-    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata/trainval'
-    target_audios = '/home/azureuser/gitm/active-speakers-context/avadata/audio_tracks'
-
+    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/topshot/trainval'
+    target_audios = '/home/azureuser/gitm/active-speakers-context/topshot/audio_tracks'
+    if not os.path.exists(target_audios):
+        os.makedirs(target_audios)
+        
     all_videos = os.listdir(ava_video_dir)
     all_videos = [v.split('.')[0] for v in all_videos]
 

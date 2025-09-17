@@ -72,12 +72,11 @@ def generate_mini_dataset(video_dir, output_dir, df, balanced=False):
 
 
 if __name__ == '__main__':
-    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/avadata/trainval'
-    output_dir = '/home/azureuser/gitm/active-speakers-context/avadata/instance_crops_time'
-    csv_file = '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_trainval_augmented.csv'
+    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/topshot/trainval'
+    output_dir = '/home/azureuser/gitm/active-speakers-context/topshot/instance_crops_time/train'
+    csv_file = '/home/azureuser/gitm/active-speakers-context/test.csv'
 
     df = pd.read_csv(csv_file, engine='python')
-    train_subset_dir = os.path.join(output_dir, 'val')
-    generate_mini_dataset(ava_video_dir, train_subset_dir, df, balanced=False)
+    generate_mini_dataset(ava_video_dir, output_dir, df, balanced=False)
 
     print(':::ALL DONE:::')
