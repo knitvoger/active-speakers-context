@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import random
 from scipy.io import wavfile
+import sys
 
 #Dont change
 sampling_rate = 16000
@@ -63,9 +64,14 @@ def extract_audio_tracks_time(audio_dir, output_dir, balanced_gb, entity_list):
 
 
 if __name__ == '__main__':
-    ava_audio_dir = '/home/azureuser/gitm/active-speakers-context/topshot/audio_tracks'
-    output_dir = '/home/azureuser/gitm/active-speakers-context/topshot/sliced_audio_tracks/train'
-    csv = '/home/azureuser/gitm/active-speakers-context/test.csv'
+    if len(sys.argv) == 4:
+        ava_audio_dir = sys.argv[1]
+        output_dir = sys.argv[2]
+        csv = sys.argv[3]
+    else:
+        ava_audio_dir = '/home/azureuser/gitm/active-speakers-context/topshot/audio_tracks'
+        output_dir = '/home/azureuser/gitm/active-speakers-context/topshot/sliced_audio_tracks/train'
+        csv = '/home/azureuser/gitm/active-speakers-context/test.csv'
 
     df = pd.read_csv(csv)
     sorted_df, entity_list = generate_audio_meta_data(df, balanced=False)

@@ -19,11 +19,15 @@ import pickle
 if __name__ == '__main__':
     clip_lenght = int(sys.argv[1])
     cuda_device_number = str(sys.argv[2])
+    video_val_path = sys.argv[3]
+    audio_val_path = sys.argv[4]
+    csv_path = sys.argv[5]
+    video_name = sys.argv[6]
+
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
     model_weights = '/home/azureuser/gitm/active-speakers-context/model_output/ste_encoder/48.pth'
     target_directory = '/home/azureuser/git/GraVi-T/data/features/RESNET18-TSM-AUG/val/'
-    io_config = exp_conf.STE_inputs
     opt_config = exp_conf.STE_forward_params
     opt_config['batch_size'] = 1
 
@@ -37,11 +41,8 @@ if __name__ == '__main__':
         'val': ct.video_val
     }
 
-    video_val_path = os.path.join(io_config['video_dir'], 'train')
-    audio_val_path = os.path.join(io_config['audio_dir'], 'train')
-
     #train_videos = load_train_video_set()
-    val_videos = ['HV0H6oc4Kvs', 'hv30s', 'HV0H6oc4Kvs_16m', 'baobeie15_640p_30s']
+    val_videos = [video_name]
 
     global_id = 0
     for video_key in val_videos:
@@ -53,7 +54,7 @@ if __name__ == '__main__':
         #     continue
 
         d_val = AudioVideoDatasetAuxLossesForwardPhase(video_key, audio_val_path, video_val_path,
-                                        io_config['csv_train_full'], clip_lenght,
+                                        csv_path, clip_lenght,
                                         image_size, video_data_transforms['val'],
                                         do_video_augment=False)
 

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import cv2
 import random
-
+import sys
 
 def generate_mini_dataset(video_dir, output_dir, df, balanced=False):
     # Assumes there is always more negatives than positives.
@@ -72,9 +72,14 @@ def generate_mini_dataset(video_dir, output_dir, df, balanced=False):
 
 
 if __name__ == '__main__':
-    ava_video_dir = '/home/azureuser/gitm/active-speakers-context/topshot/trainval'
-    output_dir = '/home/azureuser/gitm/active-speakers-context/topshot/instance_crops_time/train'
-    csv_file = '/home/azureuser/gitm/active-speakers-context/test.csv'
+    if len(sys.argv) == 4:
+        ava_video_dir = sys.argv[1]
+        output_dir = sys.argv[2]
+        csv_file = sys.argv[3]
+    else:
+        ava_video_dir = '/home/azureuser/gitm/active-speakers-context/topshot/trainval'
+        output_dir = '/home/azureuser/gitm/active-speakers-context/topshot/instance_crops_time/train'
+        csv_file = '/home/azureuser/gitm/active-speakers-context/test.csv'
 
     df = pd.read_csv(csv_file, engine='python')
     generate_mini_dataset(ava_video_dir, output_dir, df, balanced=False)
