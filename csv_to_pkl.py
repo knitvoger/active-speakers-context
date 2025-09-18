@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
-    model_weights = '/home/azureuser/gitm/active-speakers-context/model_output/ste_encoder/48.pth'
+    model_weights = '/home/azureuser/git/FaceDetection/ava_models/resnet18_clip11_epoch81.pth'
     opt_config = exp_conf.STE_forward_params
     opt_config['batch_size'] = 1
 

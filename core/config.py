@@ -9,8 +9,8 @@ import models_stage1_tsm
 
 STE_inputs = {
     # input files
-    'csv_train_full': '/home/azureuser/gitm/active-speakers-context/test.csv',
-    'csv_val_full': 'augmented.csv',
+    'csv_train_full': '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_train_augmented.csv',
+    'csv_val_full': '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_val_augmented.csv',
 
     # Data config
     'audio_dir': '/home/azureuser/gitm/active-speakers-context/topshot/sliced_audio_tracks',
