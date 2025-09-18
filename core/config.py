@@ -13,8 +13,8 @@ STE_inputs = {
     'csv_val_full': '/home/azureuser/gitm/active-speakers-context/ava_activespeaker_val_augmented.csv',
 
     # Data config
-    'audio_dir': '/home/azureuser/gitm/active-speakers-context/topshot/sliced_audio_tracks',
-    'video_dir': '/home/azureuser/gitm/active-speakers-context/topshot/instance_crops_time',
+    'audio_dir': '/home/azureuser/gitm/active-speakers-context/avadata/sliced_audio_tracks',
+    'video_dir': '/home/azureuser/gitm/active-speakers-context/avadata/instance_crops_time',
     'models_out': './topshot/model_output'
 }
 

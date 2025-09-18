@@ -22,7 +22,7 @@ if __name__ == '__main__':
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
     model_weights = '/home/azureuser/git/FaceDetection/ava_models/resnet18_clip11_epoch81.pth'
-    target_directory = '/home/azureuser/gitm/active-speakers-context/avadata/myfeatures/resnet18_clip11_epoch81/train'
+    target_directory = '/home/azureuser/gitm/active-speakers-context/avadata/myfeatures/resnet18_clip11_epoch81/val'
     io_config = exp_conf.STE_inputs
     opt_config = exp_conf.STE_forward_params
     opt_config['batch_size'] = 1
@@ -39,11 +39,11 @@ if __name__ == '__main__':
         'val': ct.video_val
     }
 
-    video_val_path = os.path.join(io_config['video_dir'], 'train')
-    audio_val_path = os.path.join(io_config['audio_dir'], 'train')
+    video_val_path = os.path.join(io_config['video_dir'], 'val')
+    audio_val_path = os.path.join(io_config['audio_dir'], 'val')
 
     #train_videos = load_train_video_set()
-    with open("/home/azureuser/gitm/active-speakers-context/train_real_video_list.txt", "r") as f:
+    with open("/home/azureuser/gitm/active-speakers-context/val_real_video_list.txt", "r") as f:
         val_videos = [line.strip() for line in f if line.strip()]
 
     for video_key in val_videos:
@@ -54,13 +54,13 @@ if __name__ == '__main__':
             continue
 
         # load original pkl from spell project
-        with open(f"/home/azureuser/git/GraVi-T/data/features/RESNET18-TSM-AUG_original/train/{video_key}.pkl", "rb") as f:
+        with open(f"/home/azureuser/git/GraVi-T/data/features/RESNET18-TSM-AUG_original/val/{video_key}.pkl", "rb") as f:
             tracks = pickle.load(f)
 
         # with open(target_directory+video_key+'.csv', mode='w') as vf:
             # vf_writer = csv.writer(vf, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         d_val = AudioVideoDatasetAuxLossesForwardPhase(video_key, audio_val_path, video_val_path,
-                                        io_config['csv_train_full'], clip_lenght,
+                                        io_config['csv_val_full'], clip_lenght,
                                         image_size, video_data_transforms['val'],
                                         do_video_augment=False)
 
