@@ -23,11 +23,11 @@ if __name__ == '__main__':
     audio_val_path = sys.argv[4]
     csv_path = sys.argv[5]
     video_name = sys.argv[6]
+    target_pkl = sys.argv[7]
 
     image_size = (144, 144) #Dont forget to assign this same size on ./core/custom_transforms
 
     model_weights = '/home/azureuser/gitm/active-speakers-context/model_output/ste_encoder/48.pth'
-    target_directory = '/home/azureuser/git/GraVi-T/data/features/RESNET18-TSM-AUG/val/'
     opt_config = exp_conf.STE_forward_params
     opt_config['batch_size'] = 1
 
@@ -48,7 +48,6 @@ if __name__ == '__main__':
     for video_key in val_videos:
         data = {}
         print(f'forward video {video_key}')
-        target_pkl = os.path.join(target_directory, video_key + ".pkl")
         # if os.path.exists(target_pkl):
         #     print(f"skip {video_key}")
         #     continue
